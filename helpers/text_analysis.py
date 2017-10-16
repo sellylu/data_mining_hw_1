@@ -81,7 +81,7 @@ def plot_heat_map(plot_x, plot_y, plot_z):
     fig = go.Figure(data = data, layout=layout)
     return fig
 
-def get_trace(X_pca, data, category, color):
+def get_trace(X_pca, data, category, color, name=''):
     """ Build trace for plotly chart based on category """
     trace = go.Scatter3d(
         x=X_pca[data.apply(lambda x: True if x==category else False), 0],
@@ -96,7 +96,8 @@ def get_trace(X_pca, data, category, color):
             ),
             opacity=0.8
         ),
-        text=data[data.apply(lambda x: True if x==category else False).tolist()]
+        text=data[data.apply(lambda x: True if x==category else False).tolist()],
+        name=name
     )
     return trace
 
